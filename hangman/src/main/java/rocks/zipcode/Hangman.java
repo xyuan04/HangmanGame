@@ -55,14 +55,14 @@ public class Hangman {
             while (true) {
                 if (continueGame.equals("yes")) {
                     gameOn = true;
+                    stillInTheGame = true;
                     break;
                 } else if (continueGame.equals("no")) {
+                    System.out.println(newGameMessage.gameOver());
                     gameOn = false;
-                    newGameMessage.gameOver();
                     break;
                 } else continueGame = Console.getStringInput("Invalid selection: Would you like to play again? (yes/no)");
             }
         }
-
     }
 }
