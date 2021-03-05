@@ -1,7 +1,11 @@
 package rocks.zipcode;
 
 public class Guesses {
-//    int guessesLeft = randomWord.length();
+    int guessesRemaining;
+
+//    public void initializeGuesses() {
+//        guessesRemaining =
+//    }
 
 
 
