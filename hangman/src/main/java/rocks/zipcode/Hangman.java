@@ -1,37 +1,39 @@
 package rocks.zipcode;
 
-import java.util.Arrays;
 import java.util.Scanner;
-import java.util.Random;
 
 public class Hangman {
-    static char[] currentGameState;
 
     public static void main(String[] args) {
         Hangman startApp = new Hangman();
-        Message newGameMessage = new Message();
-        Wordlist gameWord = new Wordlist();
 
-        newGameMessage.announceGame();
         startApp.runGame();
-        System.out.println(currentGameState);
-        System.out.println(newGameMessage.playerWon());
-        System.out.println(newGameMessage.playerLost());
-        System.out.println(newGameMessage.gameOver());
     }
 
     public void runGame() {
         Scanner scan = new Scanner(System.in);
         Wordlist gameWord = new Wordlist();
+        Message newGameMessage = new Message();
+        Guesses playerGuess = new Guesses();
 
-        currentGameState = gameWord.initializeGameState();
-        guessArray();
+        newGameMessage.announceGame();
+        gameWord.initializeGameState();
+        gameWord.guessArray();
+        System.out.println(gameWord.currentGameState.length);
+        playerGuess.guessesRemaining = gameWord.currentGameState.length;
+        System.out.println(playerGuess.guessesRemaining);
+        playerGuess.useGuess();
+        playerGuess.useGuess();
+        playerGuess.useGuess();
+        System.out.println(playerGuess.guessesRemaining);
+        System.out.println(gameWord.hiddenGameState);
+        System.out.println(gameWord.currentGameState);
+        gameWord.printCurrentState();
+        gameWord.printCurrentState();
+
 
     }
 
-    public char[] guessArray() { ;
-        Arrays.fill(currentGameState, '_');
-        return currentGameState;
-    }
+
 
 }

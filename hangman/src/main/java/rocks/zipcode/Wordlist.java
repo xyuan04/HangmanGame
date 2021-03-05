@@ -1,11 +1,14 @@
 package rocks.zipcode;
 
+import java.util.Arrays;
+
 public class Wordlist {
     String[] animeHeroes = {"KAKAROT", "MONKEYDLUFFY", "MIDORIYA", "URAMESHI", "SAKURAGI", "ONIZUKA", "SAITAMA", "JOTARO", "UZUMAKI"};
     String[] basketballLegends = {"JORDAN", "BRYANT", "CURRY", "ONEAL", "IVERSON", "DUNCAN", "BARKLEY", "JAMES", "RODMAN"};
     String[] bestLeagueChamps = {"KAISA", "SAMIRA", "KATARINA", "ASHE", "VAYNE", "SARAHFORTUNE", "JARVANIV", "KHAZIX", "LUCIAN"};
     String[] programLanguages = {"JAVA", "PYTHON", "JAVASCRIPT", "CSHARP", "SWIFT", "CPLUSPLUS", "RUBY", "TYPESCRIPT", "COBRA"};
-
+    char[] hiddenGameState;
+    char[] currentGameState;
 
     public String getWord() {
         int randomChoice = (int) (Math.random() * (8 - 1 + 1) + 1);
@@ -38,41 +41,22 @@ public class Wordlist {
                     break;
             }
         }
-
         return chosenWord;
     }
 
     public char[] initializeGameState() {
-        return getWord().toCharArray();
+        this.hiddenGameState = getWord().toCharArray();
+        return this.hiddenGameState;
     }
 
+    public char[] guessArray() {
+        this.currentGameState = new char[this.hiddenGameState.length];
+        Arrays.fill(this.currentGameState, '_');
+        return this.currentGameState;
+    }
 
-
-
-//
-//    public Character[] initializeCharArray() {
-//        String convertWord = getWord(Console.getStringInput("Please choose a category."));
-//        Character[] mysteryWord = new Character[convertWord.length()];
-//
-//        for (int i = 0; i < convertWord.length(); i++) {
-//            mysteryWord[i] = convertWord.charAt(i);
-//        }
-//
-//
-//        return mysteryWord;
-//    }
-//
-//
-//    public String guessWord() {
-//        Character[] temp = initializeCharArray();
-//        String bank = "";
-//
-//        for (int i = 0; i < temp.length; i++) {
-//            bank += temp[i];
-//        }
-//        return bank;
-//
-//    }
-
+    public void printCurrentState() {
+        System.out.println(this.currentGameState);
+    }
 
 }

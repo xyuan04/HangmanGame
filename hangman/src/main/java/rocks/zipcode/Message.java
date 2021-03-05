@@ -7,8 +7,7 @@ public class Message {
         System.out.println("Anime Heroes -- Basketball -- League of Legends -- Program Languages");
     }
 
-    public void printCurrentState() {
-    }
+
 
     public String gameOver() {
         return "Game Over";
