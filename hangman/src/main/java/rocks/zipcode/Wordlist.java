@@ -11,7 +11,7 @@ public class Wordlist {
     char[] currentGameState;
 
     public String getWord() {
-        int randomChoice = (int) (Math.random() * (8 - 1 + 1) + 1);
+        int randomChoice = (int) (Math.random() * (8.999999999999 - 0 + 0) + 0);
         String chosenWord = "";
         String userInput = Console.getStringInput("Please select a category:");
         boolean valid = true;

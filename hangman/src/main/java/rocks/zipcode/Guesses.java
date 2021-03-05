@@ -7,9 +7,8 @@ public class Guesses {
         this.guessesRemaining -= 1;
     }
 
-//    public boolean isWordGuessed() {
-//        if()
-//    }
+
+
 
 
 
