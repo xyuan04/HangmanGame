@@ -1,5 +1,7 @@
 package rocks.zipcode;
 
+import java.util.Arrays;
+
 public class Hangman {
     public boolean gameOn = true;
 
@@ -13,6 +15,7 @@ public class Hangman {
         WordBank gameWord = new WordBank();
         Message newGameMessage = new Message();
         Guesses playerGuess = new Guesses();
+        String secretWord = "";
         boolean stillInTheGame = true;
 
 
@@ -22,6 +25,11 @@ public class Hangman {
             gameWord.initializeGameState();
             gameWord.guessArray();
             playerGuess.guessesRemaining = gameWord.hiddenGameState.length;
+
+            for(int i = 0; i < gameWord.hiddenGameState.length; i++) {
+                secretWord += gameWord.hiddenGameState[i];
+            }
+
             while(stillInTheGame) {
                 gameWord.printCurrentState();
                 System.out.println("You have " + playerGuess.guessesRemaining + " tries left.");
@@ -34,6 +42,8 @@ public class Hangman {
                 playerGuess.useGuess();
                 System.out.println(playerGuess.guessesRemaining);
 
+
+
                 if (gameWord.isWordGuessed()) {
                     gameWord.printCurrentState();
                     System.out.println(newGameMessage.playerWon());
@@ -45,6 +55,7 @@ public class Hangman {
                 if (playerGuess.guessesRemaining == 0) {
                     gameWord.printCurrentState();
                     System.out.println(newGameMessage.playerLost());
+                    System.out.println("The secret word was " + secretWord);
                     stillInTheGame = false;
                     System.out.println(newGameMessage.lostGame());
                 }

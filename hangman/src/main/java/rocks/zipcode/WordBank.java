@@ -11,7 +11,7 @@ public class WordBank {
     char[] currentGameState;
 
     public String getWord() {
-        int randomChoice = (int) (Math.random() * (8.999999999999 - 0 + 0) + 0);
+        int randomChoice = (int) (Math.random() * (8.999999999999));
         String chosenWord = "";
         String userInput = Console.getStringInput("Please select a category:");
         boolean valid = true;
