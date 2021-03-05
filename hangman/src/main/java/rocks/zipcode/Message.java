@@ -10,7 +10,7 @@ public class Message {
 
 
     public String gameOver() {
-        return "Game Over";
+        return "Game Over!";
     }
 
     public String playerWon() {
@@ -20,4 +20,8 @@ public class Message {
     public String playerLost() {
         return ":-( :-( :-(";
     }
+
+    public String beatGame() {return "Congratulations, You Won!";}
+
+    public String lostGame() {return "You Lost! You ran out of guesses.";}
 }

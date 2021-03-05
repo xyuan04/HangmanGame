@@ -1,7 +1,5 @@
 package rocks.zipcode;
 
-import java.util.Scanner;
-
 public class Hangman {
     public boolean gameOn = true;
 
@@ -12,32 +10,59 @@ public class Hangman {
     }
 
     public void runGame() {
-        Scanner scan = new Scanner(System.in);
-        Wordlist gameWord = new Wordlist();
+        WordBank gameWord = new WordBank();
         Message newGameMessage = new Message();
         Guesses playerGuess = new Guesses();
+        boolean stillInTheGame = true;
 
 
-        newGameMessage.announceGame();
+
         while(gameOn) {
+            newGameMessage.announceGame();
             gameWord.initializeGameState();
             gameWord.guessArray();
-            System.out.println(gameWord.currentGameState.length);
-            playerGuess.guessesRemaining = gameWord.currentGameState.length;
-            System.out.println(playerGuess.guessesRemaining);
-            playerGuess.useGuess();
-            playerGuess.useGuess();
-            playerGuess.useGuess();
-            System.out.println(playerGuess.guessesRemaining);
-            System.out.println(gameWord.hiddenGameState);
-            System.out.println(gameWord.currentGameState);
-            gameWord.printCurrentState();
-            gameWord.printCurrentState();
+            playerGuess.guessesRemaining = gameWord.hiddenGameState.length;
+            while(stillInTheGame) {
+                gameWord.printCurrentState();
+                System.out.println("You have " + playerGuess.guessesRemaining + " tries left.");
+                char input = playerGuess.getInput();
+                for (int i = 0; i < gameWord.hiddenGameState.length; i++) {
+                    if (input == gameWord.hiddenGameState[i]) {
+                        gameWord.currentGameState[i] = input;
+                    }
+                }
+                playerGuess.useGuess();
+                System.out.println(playerGuess.guessesRemaining);
+
+                if (gameWord.isWordGuessed()) {
+                    gameWord.printCurrentState();
+                    System.out.println(newGameMessage.playerWon());
+                    stillInTheGame = false;
+                    System.out.println(newGameMessage.beatGame());
+                    break;
+                }
+
+                if (playerGuess.guessesRemaining == 0) {
+                    gameWord.printCurrentState();
+                    System.out.println(newGameMessage.playerLost());
+                    stillInTheGame = false;
+                    System.out.println(newGameMessage.lostGame());
+                }
+            }
+
+            String continueGame = Console.getStringInput("Would you like to play again? (yes/no)");
+
+            while (true) {
+                if (continueGame.equals("yes")) {
+                    gameOn = true;
+                    break;
+                } else if (continueGame.equals("no")) {
+                    gameOn = false;
+                    newGameMessage.gameOver();
+                    break;
+                } else continueGame = Console.getStringInput("Invalid selection: Would you like to play again? (yes/no)");
+            }
         }
 
     }
-
-
-
-
 }

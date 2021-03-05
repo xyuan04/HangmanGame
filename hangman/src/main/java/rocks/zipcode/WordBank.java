@@ -2,7 +2,7 @@ package rocks.zipcode;
 
 import java.util.Arrays;
 
-public class Wordlist {
+public class WordBank {
     String[] animeHeroes = {"KAKAROT", "MONKEYDLUFFY", "MIDORIYA", "URAMESHI", "SAKURAGI", "ONIZUKA", "SAITAMA", "JOTARO", "UZUMAKI"};
     String[] basketballLegends = {"JORDAN", "BRYANT", "CURRY", "ONEAL", "IVERSON", "DUNCAN", "BARKLEY", "JAMES", "RODMAN"};
     String[] bestLeagueChamps = {"KAISA", "SAMIRA", "KATARINA", "ASHE", "VAYNE", "SARAHFORTUNE", "JARVANIV", "KHAZIX", "LUCIAN"};
@@ -56,7 +56,14 @@ public class Wordlist {
     }
 
     public void printCurrentState() {
+        System.out.println("Current Guesses:");
         System.out.println(this.currentGameState);
+    }
+
+    public boolean isWordGuessed() {
+        if(Arrays.equals(this.currentGameState, this.hiddenGameState)) {
+            return true;
+        } else return false;
     }
 
 }
