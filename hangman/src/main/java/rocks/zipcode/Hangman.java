@@ -49,6 +49,7 @@ public class Hangman {
                     System.out.println(newGameMessage.playerWon());
                     stillInTheGame = false;
                     System.out.println(newGameMessage.beatGame());
+                    secretWord = "";
                     break;
                 }
 
@@ -58,6 +59,7 @@ public class Hangman {
                     System.out.println("The secret word was " + secretWord);
                     stillInTheGame = false;
                     System.out.println(newGameMessage.lostGame());
+                    secretWord = "";
                 }
             }
 
